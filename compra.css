@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+body{
+    background-image: url(Logo.png);
+    background-position: center;
+
+}
+
+section{
+    background-color: rgb(17, 168, 255);
+    border-radius: 20px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 110px;
+    width: 500px;
+    height: 250px;
+    margin-left: 400px;
+    
+}
+
+h1{
+    font-size: 2em;
+}
+
+.face{
+    position: relative;
+    top: 15px;
+    left: -10px;
+    font-size: 21px;
+    cursor: default;
+
+
+}
+
+.burguer{
+    position: relative;
+    top: -8.1px;
+    left: 10px;
+    cursor: default;
+}
+
+
+.volver {
+    font-size: 30px;
+    background-color: rgb(248, 58, 0);
+    padding: 6px;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border-radius: 13px;
+    transition: 0.5s;
+    
+}
+
+.volver:hover{
+    transform: translateY(24px);
+}
+
+.cangre a{
+    font-size: 13px;
+    background-color: rgb(248, 58, 0);
+    padding: 6px;
+    position: relative;
+    top: -10px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border-radius: 13px;
+    cursor: default;
+}

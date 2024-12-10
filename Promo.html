@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilospromo.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="Logo.png" alt="">
+            <div class="tittle">Cangreburger</div>
+        </div>
+
+        <div class="search">
+            <input type="search"><ion-icon name="search"></ion-icon>
+        </div>
+
+        <nav class="carro">
+
+            <div class="btn-menu">
+                <label for="btn-menu">☰</label>
+            </div>
+            <div class="capa"></div>
+
+            <input type="checkbox" id="btn-menu" />
+            <div class="container-menu">
+                <div class="cont-menu">
+                    <nav>
+                        <a href="SobreNosotros.html">Sobre Nosotros</a>
+                        
+                        <a href="Promo.html">Promociones</a>
+                        <a href="#">Instagram</a>
+                    </nav>
+                    <label for="btn-menu">✖️</label>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="vuelta">
+        <a href="index.html"><img src="Imagenes/Icono Home.png" alt=""></a>
+    </div>
+
+
+    <section>
+        <div class="product-container">
+            <div class="product">
+                <img src="Imagenes/Promo.png" alt="">
+                <h2>CangreDuo Clasica</h2>
+                <label>8000$</label>
+                <button onclick="agregarAlCarrito('CangreDuoClasica', 8.000)">Agregar CangreDuoClasica</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="Imagenes/Promo (1).png" alt="">
+            <h2>SuperCangrePromo Duo</h2>
+            <label>11.000$</label>
+            <button onclick="agregarAlCarrito('SuperCangreDuo', 11.000)">Agregar SuperCangreDuo</button>
+        </div>
+
+        <div class="product">
+            <img src="Imagenes/Promo (2).png" alt="">
+            <h2>EscuadronMonstruosa </h2>
+            <label>10.000$</label>
+            <button onclick="agregarAlCarrito('EscuadronMonstruosa', 10.000)">Agregar PromoMonstruosa</button>
+        </div>
+
+        <div class="product">
+            <img src="Imagenes/Promo (3).png" alt="">
+            <h2>CangreVegano</h2>
+            <label>9.500$</label>
+            <button onclick="agregarAlCarrito('CangreVegano', 9.500)">Agregar CangreVegano</button>
+        </div>
+    </section>
+    <section class="totalidad">
+        <h3>Total: $<span id="total">0</span></h3>
+        <button onclick="vaciarCarrito()">Vaciar Carrito</button><ion-icon name="trash-outline"></ion-icon>
+    </section>
+
+    <section class="Comprado">
+        <button id="boton-comprar" onclick="comprar()" disabled>Comprar</button>
+    </section>
+
+    <section class="cart">
+        <h4>Productos en el carrito:</h4>
+        <ul id="carrito"></ul>
+
+
+
+
+    </section>
+
+
+    <script>
+        // Array para almacenar los productos del carrito
+        let carrito = [];
+
+        // Función para actualizar la vista del carrito y el total
+        function actualizarCarrito() {
+            const lista = document.getElementById('carrito');
+            const total = document.getElementById('total');
+            lista.innerHTML = ''; // Limpiar la lista
+
+            let sumaTotal = 0;
+
+            carrito.forEach((producto, index) => {
+                const item = document.createElement('li');
+                item.textContent = `${producto.nombre} - $${producto.precio.toFixed(3)}`;
+
+                const botonEliminar = document.createElement('button');
+                botonEliminar.textContent = 'Eliminar';
+                botonEliminar.onclick = () => eliminarProducto(index);
+
+                item.appendChild(botonEliminar);
+                lista.appendChild(item);
+
+                sumaTotal += producto.precio; // Sumar el precio del producto al total
+            });
+
+            total.textContent = sumaTotal.toFixed(3); // Actualizar el total en pantalla
+
+            // Habilitar o deshabilitar el botón "Comprar" dependiendo si hay productos en el carrito
+            const botonComprar = document.getElementById('boton-comprar');
+            if (carrito.length > 0) {
+                botonComprar.disabled = false; // Habilitar si hay productos
+            } else {
+                botonComprar.disabled = true; // Deshabilitar si no hay productos
+            }
+
+            
+        }
+
+
+
+        // Función para agregar un producto al carrito
+        function agregarAlCarrito(nombre, precio) {
+            carrito.push({ nombre, precio }); // Agregar un objeto con nombre y precio
+            actualizarCarrito();
+        }
+
+        // Función para vaciar todo el carrito
+        function vaciarCarrito() {
+            carrito = [];
+            actualizarCarrito();
+            
+        }
+
+        // Función para eliminar un producto específico del carrito
+        function eliminarProducto(indice) {
+            carrito.splice(indice, 1); // Eliminar el producto por índice
+            actualizarCarrito();
+        }
+
+        // Función para comprar y redirigir a la página de pago
+        function comprar() {
+            if (carrito.length === 0) {
+                alert("El carrito está vacío. Agrega productos antes de comprar.");
+                return;
+            }
+
+            const sumaTotal = carrito.reduce((total, producto) => total + producto.precio, 0);
+            alert(`El total de tu compra es: $${sumaTotal.toFixed(3)}. Serás redirigido a la página de pago.`);
+
+            // Redirigir a la página de pago (cambia la URL según tus necesidades)
+            window.location.href = "Compra.html";
+        }
+
+    </script>
+
+
+
+
+
+    <br>
+    <br>
+
+    <footer class="footer">
+        <ul class="social-icon">
+            <li class="icon-elem">
+                <a href="https://www.youtube.com/@valentinabad-y7v" class="icon">
+                    <ion-icon name="logo-youtube"></ion-icon>
+                </a>
+            </li>
+            <li class="icon-elem">
+                <a href="" class="icon">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+            </li>
+            <li class="icon-elem">
+                <a href="" class="icon">
+                    <ion-icon name="logo-whatsapp"></ion-icon>
+                </a>
+            </li>
+            <li class="icon-elem">
+                <a href="" class="icon">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+            </li>
+            <li class="icon-elem">
+                <a href="" class="icon">
+                    <ion-icon name="mail-outline"></ion-icon>
+                </a>
+            </li>
+        </ul>
+        <ul class="menu">
+            <li class="menu-elem">
+                <a href="index.html" class="menu-icon"> Inicio </a>
+            </li>
+            <li class="menu-elem">
+                <a href="SobreNosotros.html" class="menu-icon"> Sobre Nosotros </a>
+            </li>
+        </ul>
+        <p class="text">@Año24 | Todos El Estilo Que puedas Tener</p>
+    </footer>
+</body>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</html>
